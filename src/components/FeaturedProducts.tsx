@@ -15,7 +15,7 @@ export default async function FeaturedProducts() {
   return <section>
     <div className='space-y-5'>
       <h2 className='text-2xl font-bold'>Featured Products</h2>
-      <div className='flex flex-row gap-2 sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='flex flex-col gap-2 sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {featuredProducts.items.map(product => (
             <Products product={product} key={product._id} />
         ))}
