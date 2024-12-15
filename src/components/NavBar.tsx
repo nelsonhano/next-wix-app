@@ -7,10 +7,7 @@ import logo from '@/assets/logo.png'
 export default async function NavBar() {
     const cart = await getCart();
 
-    const totalQuantity
-        = cart?.lineItems.reduce(
-            (acc, item) => acc + (item.quantity || 0),
-        0) || 0;
+    const totalQuantity = cart?.lineItems.reduce((acc, item) => acc + (item.quantity || 0), 0) || 0;
 
     return (
         <header className='bg-background shadow-sm'>
@@ -26,6 +23,7 @@ export default async function NavBar() {
                 </Link>
                 <div><span>{totalQuantity}</span> item in your cart</div>
             </nav>
+            {/*{JSON.stringify(wixClient.collections., null, 2)}*/}
         </header>
     )
 }
