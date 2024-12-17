@@ -25,3 +25,16 @@ export function getFormattedPrice(product: products.Product){
     )
   }
 }
+
+
+export function findVarientOption(product: products.Product, selectedOption: Record<string, string>){
+  if(!product.manageVariants) return null;
+
+  return (
+    product.variants?.find((variant) => {
+      return Object.entries(selectedOption).every(
+        ([key, value]) => variant.choices?.[key] === value,
+      );
+    }) || null
+  )
+}
