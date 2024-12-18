@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { products } from "@wix/stores";
 import WixImg from "./WixImg";
+import { PlayIcon } from "lucide-react";
 
 interface MediaPreview {
     mediaItem: products.MediaItem;
@@ -16,9 +17,9 @@ export default function MediaPreview({mediaItem, isSelected, onSelect}:MediaPrev
     ? thumbnailUrl.split(stillFramMediaId)[0] + stillFramMediaId
     : undefined
 
-    if (!imageUrl && resolvedThumbnailUrl) return null;
+    if (!imageUrl && !resolvedThumbnailUrl) return null;
 
-    return <div className={cn('', isSelected && 'outline outline-1 outline-primary')}>
+    return <div className={cn('relative cursor-pointer bg-secondary', isSelected && 'outline outline-1 outline-primary')}>
         <WixImg 
             mediaIdentifier={imageUrl || resolvedThumbnailUrl}
             alt={mediaItem.image?.altText || mediaItem.video?.files?.[0].altText}
@@ -27,5 +28,10 @@ export default function MediaPreview({mediaItem, isSelected, onSelect}:MediaPrev
             onClick={onSelect}
             scaleToFill
         />
+        {resolvedThumbnailUrl && (
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/40 rounded-full size-9s flex items-center justify-center">
+                <PlayIcon className="size-5 text-white/50" />
+            </span>
+        )}
     </div>
 }

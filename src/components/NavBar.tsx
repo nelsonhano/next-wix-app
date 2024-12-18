@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import {getCart} from "@/lib/action/product.action";
 import logo from '@/assets/logo.png'
+import { ShoppingCart } from "lucide-react";
 
 export default async function NavBar() {
     const cart = await getCart();
@@ -21,7 +22,10 @@ export default async function NavBar() {
                     />
                     <span className='text-xl font-bold'>Flow Shop</span>
                 </Link>
-                <div><span>{totalQuantity}</span> item in your cart</div>
+                <div className="flex relative">
+                    <ShoppingCart className="size-8 bg-slate-700/55 rounded-full p-1"/>
+                    <span className="text-2xl absolute text-orange-400 font-extrabold top-1/3 left-1/2">{totalQuantity}</span> 
+                </div>
             </nav>
             {/*{JSON.stringify(wixClient.collections., null, 2)}*/}
         </header>

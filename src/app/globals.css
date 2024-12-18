@@ -6,6 +6,7 @@ body {
   font-synthesis: none;
 }
 
+@import "~react-medium-image-zoom/dist/styles.css";
 
 @layer base {
   :root {

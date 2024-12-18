@@ -24,7 +24,7 @@ export async function generateMetadata({ params: { slug } }: ProductProps) {
                     url: mainImg.url,
                     width: mainImg.width,
                     height: mainImg.height,
-                    alt: mainImg.altText || ''
+                    alt: mainImg.altText || ''  
                 }
             ]: undefined
         }
@@ -39,9 +39,6 @@ export default async function name({ params: { slug} }:ProductProps) {
     return(
         <main className="max-w-7xl mx-auto space-y-10 px-5 py-10">
             <ProductDetails product={product}/>
-            {/* <pre className="overflow-x-hidden">
-                {JSON.stringify(product, null, 2)}
-            </pre>  */}
         </main>
     )
 } 
