@@ -38,3 +38,17 @@ export function findVarientOption(product: products.Product, selectedOption: Rec
     }) || null
   )
 }
+
+
+export function checkInStock(
+  product: products.Product, 
+  selectedOption: Record<string, string>
+){
+  const variant = findVarientOption(product, selectedOption);
+
+  if (!variant) return null
+
+  return variant ? variant.stock?.quantity !== 0 && variant.stock?.inStock
+  : product.stock?.inventoryStatus === products.InventoryStatus.IN_STOCK || 
+    product.stock?.inventoryStatus === products.InventoryStatus.PARTIALLY_OUT_OF_STOCK
+}

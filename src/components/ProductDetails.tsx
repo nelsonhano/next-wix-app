@@ -5,7 +5,8 @@ import WixImg from "./WixImg"
 import Badge from "./ui/badge"
 import ProductOptions from "./ProductOptions"
 import { useState } from "react"
-import { findVarientOption } from "@/lib/utils"
+import { checkInStock, findVarientOption } from "@/lib/utils"
+import ProductPrice from "./ProductPrice"
 
 interface ProductDetails{
     product: products.Product
@@ -19,7 +20,10 @@ export default function ProductDetails({product}:ProductDetails){
         }))?.reduce((acc, curr) => ({...acc, ...curr}), {}) || {}
     )
 
-    const selected = findVarientOption(product, selectedOption)
+    const selectedVariant = findVarientOption(product, selectedOption)
+
+    const inStock = checkInStock(product, selectedOption)
+
     return(
         <main className="flex flex-col gap-10 md:flex-row lg:gap-20">
             <div className="basis-2/5">
@@ -47,6 +51,7 @@ export default function ProductDetails({product}:ProductDetails){
                             dangerouslySetInnerHTML={{__html: product.description }}
                         />
                     )}
+                    <ProductPrice product={product} selectedVariant={selectedVariant} />
                     <ProductOptions 
                         product={product}
                         selectedOption={selectedOption} 

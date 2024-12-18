@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -171,14 +172,14 @@ export default function Footer() {
                             </li>
 
                             <li>
-                                <a
+                                <Link
                                     href="/terms"
                                     title=""
                                     className="flex text-base transition-all duration-200 hover:text-primary focus:text-primary"
                                 >
                                     {" "}
                                     Terms & Conditions{" "}
-                                </a>
+                                </Link>
                             </li>
 
                             <li>

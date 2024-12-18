@@ -1,6 +1,7 @@
 'use server';
 
 import { getWixClient } from "@/lib/wix.client.base";
+import { cache } from "react";
 const wixClient = getWixClient();
 
 type sortTypes = 'last_updated' | 'price_desc' | 'price_asc';
@@ -47,12 +48,12 @@ export async function queryProducts({collectionId, sort='last_updated'}:QueryPro
 }
 
 
-export async function getProduct(slug: string) {
-    const {items} = await wixClient.products
+export const getProductBYSlug = cache(async (slug: string) => {
+    const { items } = await wixClient.products
         .queryProducts()
         .eq('slug', slug)
         .limit(1)
-        .find() 
+        .find()
 
     const product = items[0];
 
@@ -61,4 +62,4 @@ export async function getProduct(slug: string) {
     }
 
     return product
-}
+})

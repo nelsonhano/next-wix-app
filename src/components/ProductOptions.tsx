@@ -1,5 +1,6 @@
 import { products } from "@wix/stores"
 import { Label } from "./ui/label"
+import { checkInStock, cn } from "@/lib/utils"
 
 interface ProductOptions{
     product: products.Product,
@@ -34,7 +35,15 @@ export default function ProductOptions({product, selectedOption, setSelectedOpti
                                 />
                                 <Label
                                     htmlFor={choice.description}
-                                    className="flex rounded-md peer-checked:border-primary items-center justify-center min-w-40 cursor-pointer gap-1.5 border p-2"
+                                    className={cn("flex rounded-md peer-checked:border-primary items-center justify-center min-w-40 cursor-pointer gap-1.5 border p-2",
+                                        !checkInStock
+                                        (
+                                            product,
+                                            {
+                                                [option.name || '']: choice.description || '',
+                                            }
+                                        ) && 'opacity-50'
+                                    )}
                                 >
                                     {option.optionType === products.OptionType.color &&(
                                         <span 
