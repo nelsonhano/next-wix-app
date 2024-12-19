@@ -21,7 +21,7 @@ export default function ProductMedia({media}: ProductMediaProps) {
             <div className="sticky top-0">
                 <div className="aspect-square bg-secondary">
                     {selectedImg?.url ? (
-                        <Zoom>
+                        <Zoom key={selectedImg.url}>
                             <WixImg
                                 scaleToFill
                                 mediaIdentifier={selectedImg.url}
